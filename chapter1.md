@@ -1,116 +1,32 @@
 ---
-title       : Insert the chapter title here
-description : Insert the chapter description here
+title       : R 기초 들어가며
+description : 이번 장에서 R에 대한 첫걸음을 떼게 된다. 전자계산기로 R 사용법과 더불어 특정 값을 변수 대입하는 방법을 학습한다. R에서 사용되는 기본 자료형에 대해서도 친숙하게 된다. 시작해 보자.
 attachments :
-  slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
+  slides_link : 
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3dd7190c72
-## A really bad movie
-
-Have a look at the plot that showed up in the viewer to the right. Which type of movie has the worst rating assigned to it?
-
-*** =instructions
-- Adventure
-- Action
-- Animation
-- Comedy
-
-*** =hint
-Have a look at the plot. Which color does the point with the lowest rating have?
-
-*** =pre_exercise_code
-```{r}
-# The pre exercise code runs code to initialize the user's workspace.
-# You can use it to load packages, initialize datasets and draw a plot in the viewer
-
-movies <- read.csv("http://s3.amazonaws.com/assets.datacamp.com/course/introduction_to_r/movies.csv")
-
-library(ggplot2)
-
-ggplot(movies, aes(x = runtime, y = rating, col = genre)) + geom_point()
-```
-
-*** =sct
-```{r}
-# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
-
-msg_bad <- "That is not correct!"
-msg_success <- "Exactly! There seems to be a very bad action movie in the dataset."
-test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
-```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:73571c20c3
-## More movies
+## R은 어떻게 동작하나
 
-In the previous exercise, you saw a dataset about movies. In this exercise, we'll have a look at yet another dataset about movies!
+오른편에 편집기를 통해, R코드를 타이핑하여 연습문제를 푼다.
+**Submit Answer** 버튼을 클릭하면, 타이핑한 모든 코드를 R이 해석하고 실행시킨다.
+그러면, 작성한 코드가 올바르게 작성되었는지 판단결과가 메시지로 뿌려진다.
+작성한 R 코드 출력결과는 오른쪽 하단 콘솔창에 나타난다.
 
-A dataset with a selection of movies, `movie_selection`, is available in the workspace.
+주석으로 `#` 기호를 사용한다. 이를 통해 작성자 본인을 포함한 다른 사람도 R 코드가 무엇에 관한 것인지 이해를 돕는다.
+트위터처럼, R 코드는 실행되지 않는다. 따라서 주석으로 작성한 코드는 결과값에 아무런 영향을 주지 않는다.
+예를 들어 우측 편집기 *3+4를 계산하시오* 문장이 대표적인 주석이다.
+
+물론, 우측하단 콘솔창(R Console)에서 R 명령어를 직접 실행할 수 있다. 
+R 코드를 올바르게 작성했는지 최종 제출 전에, R 코드로 이것저것 실험하는 좋은 방법이기도 하다. 
+
 
 *** =instructions
-- Check out the structure of `movie_selection`.
-- Select movies with a rating of 5 or higher. Assign the result to `good_movies`.
-- Use `plot()` to  plot `good_movies$Run` on the x-axis, `good_movies$Rating` on the y-axis and set `col` to `good_movies$Genre`.
+- 오른쪽 편집기에 표본 코드를 미리 작성했다. 어떤 줄이 실제 R 코드이며, 어떤 줄이 주석인지 식별할 수 있는가?
+- 6에 12를 더한 합을 계산하는 코드를 추가하고, **Submit Answer** 버튼을 클릭하시오.
 
 *** =hint
-- Use `str()` for the first instruction.
-- For the second instruction, you should use `...[movie_selection$Rating >= 5, ]`.
-- For the plot, use `plot(x = ..., y = ..., col = ...)`.
-
-*** =pre_exercise_code
-```{r}
-# You can also prepare your dataset in a specific way in the pre exercise code
-
-library(MindOnStats)
-data(Movies)
-movie_selection <- Movies[Movies$Genre %in% c("action", "animated", "comedy"),c("Genre", "Rating", "Run")]
-
-# Clean up the environment
-rm(Movies)
-```
-
-*** =sample_code
-```{r}
-# movie_selection is available in your workspace
-
-# Check out the structure of movie_selection
-
-
-# Select movies that have a rating of 5 or higher: good_movies
-
-
-# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre
-
-```
+- 미리 작성된 표본 코드처럼, 6에 12를 더하여 합계를 계산하는 R 코드만 추가한다.
 
 *** =solution
-```{r}
-# movie_selection is available in your workspace
-
-# Check out the structure of movie_selection
-str(movie_selection)
-
-# Select movies that have a rating of 5 or higher: good_movies
-good_movies <- movie_selection[movie_selection$Rating >= 5, ]
-
-# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre
-plot(good_movies$Run, good_movies$Rating, col = good_movies$Genre)
-```
-
-*** =sct
-```{r}
-# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
-
-test_function("str", args = "object",
-              not_called_msg = "You didn't call `str()`!",
-              incorrect_msg = "You didn't call `str(object = ...)` with the correct argument, `object`.")
-
-test_object("good_movies")
-
-test_function("plot", args = "x")
-test_function("plot", args = "y")
-test_function("plot", args = "col")
-
-test_error()
-
-success_msg("Good work!")
-```
+- 미리 작성된 표본 코드처럼, 6에 12를 더하여 합계를 계산하는 R 코드만 추가한다.
