@@ -6,7 +6,7 @@ attachments :
 
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:73571c20c3
-## R은 어떻게 동작하나
+## R은 어떻게 동작하나?
 
 오른편에 편집기를 통해, R코드를 타이핑하여 연습문제를 푼다.
 **Submit Answer** 버튼을 클릭하면, 타이핑한 모든 코드를 R이 해석하고 실행시킨다.
